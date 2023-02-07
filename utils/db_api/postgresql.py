@@ -1,17 +1,17 @@
 import logging
-
 import asyncpg
 from asyncpg.pool import Pool
-
 from data import config
-# results = cur.fetchall()
+
 
 class Database:
     def __init__(self, pool):
         self.pool: Pool = pool
 
+
     @classmethod
     async def create(cls):
+
         pool = await asyncpg.create_pool(
             user=config.dbuser, password=config.dbpassword, host=config.ip
         )
@@ -67,47 +67,3 @@ class Database:
     async def change_data(self, oldstring, newstring):
         sql = f'''UPDATE public.data set wish = replace(wish, '{oldstring}', '{newstring}')'''
         return await self.pool.fetch(sql)
-
-
-
-
-
-    # cur = Database.cursor()
-    # cur.execute = ('''SELECT * FROM public."Admins"''')
-    # query_results = cur.fetchall()
-    # text = '\n\n'.join([', '.join(map(str, x)) for x in query_results])
-    # return (str(text))
-    # sql = '''create schema cracktable'''
-
-    # @staticmethod
-
-    # async def get_categories() -> List[Item]:
-    #     return await
-
-
-    # def format_args(sql, parameters: dict):
-    #     sql += " AND ".join([
-    #         f"{item} = ${num}" for num, item in enumerate(parameters, start=1)
-    #     ])
-    #     return sql, tuple(parameters.values())
-    #
-    # async def add_user(self, id: int, name: str, email: str = 0):
-    #     sql = "INSERT INTO public.UserTopics (chatid, author, title) VALUES($1, $2, $3)"
-    #     return await self.pool.execute(sql, id, name, email)
-    #
-    # async def select_all_users(self):
-    #     sql = '''SELECT * FROM UserTopics'''
-    #     logging.info('Select table users. . .')
-    #     return await self.pool.fetch(sql)
-    #
-    # async def select_user(self, **kwargs):
-    #     sql = "SELECT * FROM users WHERE "
-    #     sql, parameters = self.format_args(sql, kwargs)
-    #     await self.pool.fetchrow(sql, *parameters)
-    #
-    # async def save(self):
-    #     logging.info('Select table users. . .')
-    #     # return self.pool.fetch('''SELECT COUNT(*) FROM Admins''')
-    #     # sql = '''INSERT INTO admins (id, email) VALUES (1, 2)'''
-    #     sql = '''SELECT COUNT(*) FROM public."Users";'''
-    #     return await self.pool.execute(sql)

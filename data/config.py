@@ -8,12 +8,8 @@ BOT_TOKEN = str(os.getenv("BOT_TOKEN"))
 
 
 admins = [
-    294349333
-]
 
-# dbuser = str(os.getenv("PG_DB"))
-# dbpassword = str(os.getenv("PG_PASS"))
-# dbname = str(os.getenv("PG_USER"))
+]
 
 dbuser = str(os.getenv("PG_DB"))
 dbpassword = str(os.getenv("PG_PASS"))
