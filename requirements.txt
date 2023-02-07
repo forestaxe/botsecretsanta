@@ -1,0 +1,4 @@
+asyncpg
+aiogram==2.15
+python-dotenv
+asyncio
